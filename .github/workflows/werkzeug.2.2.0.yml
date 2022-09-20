@@ -1,0 +1,25 @@
+name: "werkzeug.2.2.0"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8.14
+
+      - name: Install
+        run: |
+          pip install werkzeug==2.2.0
+          pip install pytest
+
+      - name: Test
+        run: pytest test_conv.py
